@@ -1,4 +1,4 @@
-# FABULA (Latin for "Story")
+# Social Story Dataset Scripts
 
 Collection of scripts for generating clinically acceptable Social Stories.
 
