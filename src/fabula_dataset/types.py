@@ -1,4 +1,3 @@
-from datetime import datetime, timezone
 from enum import Enum
 from typing import Dict, List, Literal, Optional
 from pydantic import BaseModel, Field
@@ -32,7 +31,6 @@ EnvironmentType = Literal[
 
 
 class FamilyMember(BaseModel):
-    id: str
     name: str
     relation: str
     hasASD: bool
@@ -41,7 +39,6 @@ class FamilyMember(BaseModel):
 
 
 class Caregiver(BaseModel):
-    id: str
     name: str
     role: str
     preferredLanguage: str
@@ -50,16 +47,12 @@ class Caregiver(BaseModel):
 
 
 class LearnerProfile(BaseModel):
-    id: str
-    learnerId: Optional[str] = None
     name: str
     age: int
     gender: GenderEnum
     nationality: Optional[str] = None
     primaryLanguage: List[str] = Field(default_factory=list)
-    primaryLanguageOther: Optional[str] = None
     secondaryLanguage: List[str] = Field(default_factory=list)
-    secondaryLanguageOther: Optional[str] = None
     familyMembers: List[FamilyMember] = Field(default_factory=list)
     caregivers: List[Caregiver] = Field(default_factory=list)
     verbalAbility: VerbalAbilityEnum
@@ -74,8 +67,6 @@ class LearnerProfile(BaseModel):
     preferredFoods: List[str] = Field(default_factory=list)
     preferredActivities: List[str] = Field(default_factory=list)
     primaryEnvironment: List[EnvironmentType] = Field(default_factory=list)
-    primaryEnvironmentOther: Optional[str] = None
+    primaryEnvironmentOther: Optional[str] = Field(default=None, description="If primaryEnvironment is selected to be 'other', state the actual environment here")
     secondaryEnvironment: List[EnvironmentType] = Field(default_factory=list)
-    secondaryEnvironmentOther: Optional[str] = None
-    createdAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    updatedAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    secondaryEnvironmentOther: Optional[str] = Field(default=None, description="If secondaryEnvironment is selected to be 'other', state the actual environment here")

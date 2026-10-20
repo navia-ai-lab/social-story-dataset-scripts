@@ -117,8 +117,8 @@ def call_fanar_gateway(
     if not content:
         return None
 
-    print("Raw Response - OpenRouter Gemini")
-    print(content)
+    # print("Raw Response - Fanar Gateway Gemini")
+    # print(content)
 
     if response_schema:
         return response_schema.model_validate_json(content)
@@ -153,8 +153,8 @@ def call_openrouter(
     if not content:
         return None
 
-    print("Raw Response - OpenRouter Gemini")
-    print(content)
+    # print("Raw Response - OpenRouter Gemini")
+    # print(content)
 
     if response_schema:
         return response_schema.model_validate_json(content)

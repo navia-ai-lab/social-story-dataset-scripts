@@ -14,6 +14,9 @@ dependencies = [
     "pydantic-settings>=2.15.0",
 ]
 
+[project.scripts]
+generate_learner_profile = "fabula_dataset.scripts.learner_profile.generate_profiles:main"
+
 [build-system]
 requires = ["uv_build>=0.12.21,<0.13.0"]
 build-backend = "uv_build"

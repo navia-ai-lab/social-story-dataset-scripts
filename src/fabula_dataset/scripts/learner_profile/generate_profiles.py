@@ -1,4 +1,4 @@
-import sys
+import argparse
 import csv
 from pydantic import BaseModel, Field
 
@@ -25,6 +25,7 @@ def generate_master_profile(
     2. **Communication Spectrum:** Vary across all `verbalAbility` values (`non-verbal`, `minimal-verbal`, `verbal`, `fluent`) with appropriate `communicationModality` arrays (e.g., AAC, sign, gestures, speech).
     3. **Sensory Profiles:** Include varied sensory hyper- and hypo-sensitivities across auditory, visual, tactile, and proprioceptive domains with realistic triggers (e.g., fluorescent lighting, loud sirens, specific textures).
     4. **Interests & Reinforcers:** Include both common age-appropriate interests and highly specialized hyper-fixations.
+    5. **Family Members & Caretakers**: Include atleast 1 family member or caretaker for each entry with realistic attributes.
 
     ### Clinical Coherence Guidelines
     * Ensure logical consistency across fields (e.g., a `non-verbal` profile should not have an unrealistic functional word range or contradictory developmental markers).
@@ -32,7 +33,7 @@ def generate_master_profile(
     """
 
     llm_response = call_llm(
-        model="openrouter-gemini",
+        model="fanar-gemini",
         response_schema=LLMResponse,
         prompt=prompt,
     )
@@ -48,9 +49,7 @@ def generate_master_profile(
             writer.writerow(profile.model_dump())
 
 
-if __name__ == "__main__":
-    import argparse
-
+def main():
     parser = argparse.ArgumentParser(
         description="Generate synthetic learner profiles via LLM."
     )
@@ -72,3 +71,7 @@ if __name__ == "__main__":
         number_of_profiles=args.number_of_profiles,
         filename=args.filename,
     )
+
+
+if __name__ == "__main__":
+    main()
