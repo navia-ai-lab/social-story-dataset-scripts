@@ -12,9 +12,7 @@ class LLMResponse(BaseModel):
     )
 
 
-def generate_master_profile(
-    number_of_profiles: int = 10, filename: str = "profiles.csv"
-):
+def generate_profiles(number_of_profiles: int = 10, filename: str = "profiles.csv"):
     # Prompt refined by Gemini
     prompt = f"""You are a specialized clinical data synthesizer expert in autism spectrum disorder (ASD) and special education. 
     Your task is to generate a batch of {number_of_profiles} highly diverse, realistic, and clinically coherent learner profiles that conform strictly to the provided response schema.
@@ -67,7 +65,7 @@ def main():
 
     print("Number of profiles: ", args.number_of_profiles)
     print("Filename: ", args.filename)
-    generate_master_profile(
+    generate_profiles(
         number_of_profiles=args.number_of_profiles,
         filename=args.filename,
     )
